@@ -32,8 +32,8 @@ def valid_answer(user_answer, previous_ans, game_data):
     state_data = game_data[game_data.state == user_answer]
     states_list = game_data.state.to_list()
     if user_answer in states_list:
-        x_cor = state_data.x
-        y_cor = state_data.y
+        x_cor = float(state_data.x)
+        y_cor = float(state_data.y)
         write_turtle.penup()
         write_turtle.goto(x_cor, y_cor)
         write_turtle.write(user_answer, align="left")
@@ -47,8 +47,6 @@ while game_is_on:
     user_input = screen.textinput(title="Guess the State", prompt="What's another state name:").title()
     if valid_answer(user_input, list_of_answers, data):
         screen.title(f"You got {len(list_of_answers)}/50")
-        print(f"You got {len(list_of_answers)}/50")
-        print(list_of_answers)
     if len(list_of_answers) == 50:
         game_is_on = False
 
