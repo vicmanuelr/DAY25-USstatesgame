@@ -55,4 +55,7 @@ while game_is_on:
     if len(list_of_answers) == 50:
         game_is_on = False
 
+states_to_learn = sorted(list(set(data["state"].to_list()) - set(list_of_answers)))
+pd.DataFrame(states_to_learn).to_csv("states_to_learn.csv")
+
 screen.exitonclick()
