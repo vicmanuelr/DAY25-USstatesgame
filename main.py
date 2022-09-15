@@ -44,10 +44,15 @@ def valid_answer(user_answer, previous_ans, game_data):
 # Getting user input for game
 game_is_on = True
 while game_is_on:
-    user_input = screen.textinput(title="Guess the State", prompt="What's another state name:").title()
+    user_input = screen.textinput(title="Guess the State", prompt="What's another state name:")
+    if user_input is None or user_input == "exit":
+        game_is_on = False
+        break
+    else:
+        user_input = user_input.title()
     if valid_answer(user_input, list_of_answers, data):
         screen.title(f"You got {len(list_of_answers)}/50")
     if len(list_of_answers) == 50:
         game_is_on = False
 
-turtle.mainloop()
+screen.exitonclick()
