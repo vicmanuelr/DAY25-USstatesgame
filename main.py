@@ -29,10 +29,11 @@ data = pd.read_csv("50_states.csv")
 def valid_answer(user_answer, previous_ans, game_data):
     if user_answer in previous_ans:
         return False
+    state_data = game_data[game_data.state == user_answer]
     states_list = game_data.state.to_list()
     if user_answer in states_list:
-        x_cor = int(game_data[game_data.state == user_answer]["x"])
-        y_cor = int(game_data[game_data.state == user_answer]["y"])
+        x_cor = state_data.x
+        y_cor = state_data.y
         write_turtle.penup()
         write_turtle.goto(x_cor, y_cor)
         write_turtle.write(user_answer, align="left")
